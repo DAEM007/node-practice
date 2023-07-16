@@ -7,5 +7,12 @@ const greet = (name) => {
     console.log(`Hello ${name}`);
 }
 
-greet(name1);
-greet(name2);
+// greet(name1);
+// greet(name2);
+
+// CORE MODULES...These are modules that come with nodejs installation
+// The other kinds of modules includes local modules-that we write ourselves in our codes & third party modules-like express and mongose
+
+// let os = require('os');
+
+// console.log(os);
