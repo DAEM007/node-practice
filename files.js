@@ -10,6 +10,19 @@ fs.readFile('./docs/blog1.txt', (err, data) => {
 })
 
 // writing files
+fs.writeFile('./docs/blog1.txt', 'Hello then gang!', (err) => {
+    if(err) {
+        console.log(err.message);
+    }
+    console.log(`Data has been changed!`);
+})
+
+fs.writeFile('./docs/blog2.txt', 'Hello once again', (err) => {
+    if(err) {
+        console.log(err.message);
+    }
+    console.log('New data created');
+})
 
 // directories
 
