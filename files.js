@@ -25,5 +25,26 @@ fs.writeFile('./docs/blog2.txt', 'Hello once again', (err) => {
 })
 
 // directories
+if(fs.existsSync('./assets')) {
+    fs.rmdir('./assets', (err) => {
+        if(err) {
+            console.log(err.message);
+        }
+        console.log('directory has been removed!');
+    })
+} else {
+    fs.mkdir('./assets', (err) => {
+        if(err) {
+            console.log(err.message);
+        }
+        console.log('directory has been created');
+    })
+}
 
 // deleting files
+fs.unlink('./docs/deleteme.txt', (err) => {
+    if(err) {
+        console.log(err.message);
+    }
+    console.log('file has been deleted!');
+})
