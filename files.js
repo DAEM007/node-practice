@@ -25,19 +25,19 @@ fs.writeFile('./docs/blog2.txt', 'Hello once again', (err) => {
 })
 
 // directories
-if(fs.existsSync('./assets')) {
+if(!fs.existsSync('./assets')) {
+    fs.mkdir('./assets', (err) => {
+        if(err) {
+            console.log(err.message);
+        }
+        console.log('directory has been created!');
+    })
+} else {
     fs.rmdir('./assets', (err) => {
         if(err) {
             console.log(err.message);
         }
         console.log('directory has been removed!');
-    })
-} else {
-    fs.mkdir('./assets', (err) => {
-        if(err) {
-            console.log(err.message);
-        }
-        console.log('directory has been created');
     })
 }
 
