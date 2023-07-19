@@ -5,17 +5,19 @@ const fs = require('fs');
 const _ = require('lodash');
 
 // generate a random number using lodash...
-const num = _.random(0, 20);
-console.log(num);
+// const num = _.random(0, 20);
+// console.log(num);
 
 // invoke a greet function just once usring lodash...
-const greet = _.once(() => {
-    console.log('Hello there!');
-});
+// const greet = _.once(() => {
+//     console.log('Hello there!');
+// });
 
-greet();
-greet();
-greet();
+// notice below that the greet function runs only once, though it's invoked thrice...
+
+// greet();
+// greet();
+// greet();
 
 
 const server = http.createServer((req, res) => {
