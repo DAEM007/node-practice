@@ -2,6 +2,22 @@ const http = require('http');
 
 const fs = require('fs');
 
+const _ = require('lodash');
+
+// generate a random number using lodash...
+const num = _.random(0, 20);
+console.log(num);
+
+// invoke a greet function just once usring lodash...
+const greet = _.once(() => {
+    console.log('Hello there!');
+});
+
+greet();
+greet();
+greet();
+
+
 const server = http.createServer((req, res) => {
     console.log(req.url, req.method);
 
@@ -19,7 +35,7 @@ const server = http.createServer((req, res) => {
             path += 'about.html';
             res.statusCode = 200;
             break;
-        case '/about-me':
+        case '/about-us':
             res.statusCode = 301;
             res.setHeader('location', '/about');
             res.end();

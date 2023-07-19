@@ -1,0 +1,26 @@
+{
+  "name": "practice",
+  "version": "1.0.0",
+  "description": "**NODE BASICS**\r > *The aim of this project is to help me get started on the basics of how nodejs works...hopefully I would be building much more interesting stuffs afterwards...*",
+  "main": "files.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DAEM007/node-practice.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DAEM007/node-practice/issues"
+  },
+  "homepage": "https://github.com/DAEM007/node-practice#readme",
+  "dependencies": {
+    "lodash": "^4.17.21"
+  }
+}
