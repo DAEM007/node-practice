@@ -1,27 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daem Blog</title>
-</head>
+<%- include('./partials/header.ejs') %>
 <body>
     
-    <nav>
-        <div class="sit-title">
-            <a href=""><h1>Daem Blog</h1></a>
-            <p>Hey there, welcome to Daem site</p>
-        </div>
-        <ul>
-            <li><a href="/">Blogs</a></li>
-            <li><a href="/about">About</a></li>
-            <li><a href="/blogs/create">New Blog</a></li>
-        </ul>
-    </nav>
+    <%- include('./partials/nav.ejs') %>
 
     <div class="blogs content">
         <h2>All Blogs</h2>
+        <% if(blogs.length > 0) { %>
+            <% blogs.forEach(blog => { %>
+                <h3><%= blog.title %></h3>
+                <p><%= blog.snippets %></p>
+            <% }) %>
+        <% } else { %>
+            <p>Sorry! There are no blogs to display....</p>
+            <% } %>
     </div>
+
+    <%- include('./partials/footer.ejs') %>
 
 </body>
 </html>
