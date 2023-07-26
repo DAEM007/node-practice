@@ -10,7 +10,7 @@ app.set('view engine', 'ejs');
 // listen for requests
 app.listen(3000);
 
-// get request from the homepage which is the root
+// get request from the homepage which the root of the project
 app.get('/', (req, res) => {
     const blogs = [
         { title: 'Mind the master', snippets: 'This is a very good compendium of James Allen best works' },
@@ -33,7 +33,7 @@ app.get('/blogs/create', (req, res) => {
     res.render('create', { title: 'Create new blog' });
 });
 
-// 404-error-page
+// handle the 404-error-pages
 app.use((req, res) => {
     res.status(404).render('404', { title: '404' });
 });
