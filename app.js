@@ -4,11 +4,18 @@ const express = require('express');
 // invoke the express function and store in the app variable
 const app = express();
 
+// require morgan
+const morgan = require('morgan');
+
 // register view engine
 app.set('view engine', 'ejs');
 
 // listen for requests
 app.listen(3000);
+
+// middleware and static files
+app.use(express.static('public'));
+app.use(morgan('dev'));
 
 // get request from the homepage which the root of the project
 app.get('/', (req, res) => {
