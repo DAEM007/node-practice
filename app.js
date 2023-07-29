@@ -1,8 +1,16 @@
 // require express
 const express = require('express');
+const mongoose = require('mongoose');
 
 // invoke the express function and store in the app variable
 const app = express();
+
+// use dbURI to connect to mongodb
+const dbURI = 'mongodb+srv://daem007:Daem2017@cluster0.8snuhrq.mongodb.net/node-basics?retryWrites=true&w=majority';
+mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(result => console.log('connected to db'))
+    .catch(err => console.log(err))
+
 
 // require morgan
 const morgan = require('morgan');
