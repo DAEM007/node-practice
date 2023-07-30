@@ -8,7 +8,7 @@ const app = express();
 // use dbURI to connect to mongodb
 const dbURI = 'mongodb+srv://daem007:Daem2017@cluster0.8snuhrq.mongodb.net/node-basics?retryWrites=true&w=majority';
 mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(result => console.log('connected to db'))
+    .then(result => app.listen(3000))
     .catch(err => console.log(err))
 
 
@@ -17,9 +17,6 @@ const morgan = require('morgan');
 
 // register view engine
 app.set('view engine', 'ejs');
-
-// listen for requests
-app.listen(3000);
 
 // middleware and static files
 app.use(express.static('public'));
