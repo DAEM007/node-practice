@@ -15,12 +15,14 @@ mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
 
 // require morgan
 const morgan = require('morgan');
+const { nextDay } = require('date-fns');
 
 // register view engine
 app.set('view engine', 'ejs');
 
 // middleware and static files
 app.use(express.static('public'));
+app.use(express.urlencoded({ extended: true }));
 app.use(morgan('dev'));
 
 // mongoose & mongo tests
@@ -90,6 +92,39 @@ app.get('/blogs', (req, res) => {
             console.log(err);
         })
 
+});
+
+app.post('/blogs', (req, res) => {
+    const blog = new Blog(req.body);
+    blog.save()
+        .then(() => {
+            res.redirect('/blogs')
+        })
+        .catch(err => console.log(err))
+});
+
+app.get('/blog/:id', (req, res) => {
+    const id = req.params.id;
+    Blog.findById(id)
+        .then((result) => {
+            res.render('details', { title: 'Blog details', blog: result })
+        })
+        .catch(err => {
+            console.log(err);
+        })
+});
+
+app.delete('/blog/:id', (req, res) => {
+    const id = req.params.id;
+    Blog.findByIdAndDelete(id)
+        .then(() => {
+            res.json({
+                redirect: '/blogs'
+            })
+        })
+        .catch((err) => {
+            console.log(err);
+        })
 });
 
 // handle the 404-error-pages
