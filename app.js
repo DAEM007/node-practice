@@ -15,7 +15,6 @@ mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
 
 // require morgan
 const morgan = require('morgan');
-const { nextDay } = require('date-fns');
 
 // register view engine
 app.set('view engine', 'ejs');
