@@ -1,7 +1,9 @@
 // require express
 const express = require('express');
+// require mongoose
 const mongoose = require('mongoose');
-const Blog = require('./models/blog');
+// require blogRoutes
+const blogRoutes = require('./Routes/BlogRoutes');
 
 // invoke the express function and store in the app variable
 const app = express();
@@ -23,6 +25,29 @@ app.set('view engine', 'ejs');
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan('dev'));
+
+// get request from the homepage which the root of the project
+app.get('/', (req, res) => {
+    // redirect / route to /blogs route 
+    res.redirect('/blogs');
+
+});
+
+// get request from the about page
+app.get('/about', (req, res) => {
+    // res.send('<h1>About, Universe!</h1>');
+    res.render('about', { title: 'About' });
+
+});
+
+// middleware for mini-app containing all blogs routes
+app.use('/blogs', blogRoutes);
+
+// handle the 404-error-pages
+app.use((req, res) => {
+    res.status(404).render('404', { title: '404' });
+});
+
 
 // mongoose & mongo tests
 // app.get('/add-blog', (req, res) => {
@@ -61,74 +86,3 @@ app.use(morgan('dev'));
 //       });
 //   });
   
-
-// get request from the homepage which the root of the project
-app.get('/', (req, res) => {
-    // redirect / route to /blogs route 
-    res.redirect('/blogs');
-
-});
-
-// get request from the about page
-app.get('/about', (req, res) => {
-    // res.send('<h1>About, Universe!</h1>');
-    res.render('about', { title: 'About' });
-
-});
-
-// get request from the create new-blog page
-app.get('/blogs/create', (req, res) => {
-    res.render('create', { title: 'Create new blog' });
-});
-
-app.get('/blogs', (req, res) => {
-    // find all blogs and sort them
-    Blog.find().sort({ createdAt: -1 })
-        .then((result) => {
-            res.render('index', { title: 'Home', blogs: result });            
-        })
-        .catch((err) => {
-            console.log(err);
-        })
-
-});
-
-app.post('/blogs', (req, res) => {
-    const blog = new Blog(req.body);
-    blog.save()
-        .then(() => {
-            res.redirect('/blogs')
-        })
-        .catch(err => console.log(err))
-});
-
-app.get('/blog/:id', (req, res) => {
-    const id = req.params.id;
-    Blog.findById(id)
-        .then((result) => {
-            res.render('details', { title: 'Blog details', blog: result })
-        })
-        .catch(err => {
-            console.log(err);
-        })
-});
-
-app.delete('/blog/:id', (req, res) => {
-    const id = req.params.id;
-    Blog.findByIdAndDelete(id)
-        .then(() => {
-            res.json({
-                redirect: '/blogs'
-            })
-        })
-        .catch((err) => {
-            console.log(err);
-        })
-});
-
-// handle the 404-error-pages
-app.use((req, res) => {
-    res.status(404).render('404', { title: '404' });
-});
-
-
