@@ -11,7 +11,7 @@ const app = express();
 // use dbURI to connect to mongodb
 const dbURI = 'mongodb+srv://daem007:Daem2017@cluster0.8snuhrq.mongodb.net/node-basics?retryWrites=true&w=majority';
 mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(result => app.listen(3000))
+    .then(() => app.listen(3000))
     .catch(err => console.log(err))
 
 
